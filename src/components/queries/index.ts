@@ -29,27 +29,60 @@ export function FETCH_Listed_NFT(address: any) {
 } `;
 }
 
-export function FETCH_Bought_NFT(number: any) {
-  return `query{
-   boughtNFTs(first:${number}) {
-    _from
-    _to
-    id
-    price
-    tokenUri
-    tokenid
-  }`;
-}
-
-export function FETCH_RECENT_Transfer(address: any) {
+export function FETCH_ALL_Listed_NFT(address: any) {
   return `query {
-  transfers(where:{
-    from:"${address}"
+  tokens(where:{
+    Listed:true
   }) {
-    tokenId
+    tokenID
     Name
     Description
     ImageUrl
+    Listed
+    price
+  }
+} `;
+}
+export function FETCH_transfer_NFT(address: any) {
+  return `{
+  transfers(where: {from:"${address}"}) {
+    from
+    to
+    tokenId
+		Name
+    Description
+    ImageUrl
+    blockTimestamp
+  }
+}`;
+}
+
+export function FETCH_RECENT_BUY(address: any) {
+  return `query {
+  buys(where:{to:"${address}"}){
+    id
+    tokenId
+    price
+    Description
+    ImageUrl
+    Name
+    to
+    from
+  }
+}`;
+}
+
+export function FETCH_RECENT_SOLD(address: any) {
+  return `query {
+  buys(where:{from:"${address}"}){
+    id
+    tokenId
+    price
+    Description
+    ImageUrl
+    Name
+    to
+    from
   }
 }`;
 }
