@@ -32,6 +32,15 @@ export const Navbar = () => {
           <a className="mr-5 hover:text-gray-900">
             <Link to="/RecentTransfers">Recent Transfers</Link>
           </a>
+          <a className="mr-5 hover:text-gray-900">
+            <Link to="/BoughtNFTs">Recent Bought</Link>
+          </a>
+          <a className="mr-5 hover:text-gray-900">
+            <Link to="/SoldNFTs">Sold NFTs</Link>
+          </a>
+          <a className="mr-5 hover:text-gray-900">
+            <Link to="/market">For Sale</Link>
+          </a>
         </nav>
         <div className="flex flex-row gap-6 justify-center items-center rounded-lg ">
           <div>

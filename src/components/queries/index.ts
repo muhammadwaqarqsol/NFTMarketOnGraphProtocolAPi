@@ -40,6 +40,7 @@ export function FETCH_ALL_Listed_NFT(address: any) {
     ImageUrl
     Listed
     price
+    owner{id}
   }
 } `;
 }
