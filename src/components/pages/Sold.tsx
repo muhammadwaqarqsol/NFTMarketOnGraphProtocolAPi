@@ -14,14 +14,7 @@ import { RecentSold } from "../web3/RecentSold";
 export const SoldNFTs = () => {
   const { address, isConnected } = useAccount();
   const [length, setLength] = useState<Number>();
-  const {
-    data: NFTs,
-    isLoading,
-    isError,
-  } = useQuery(["SoldNFTS"], Query, {
-    refetchInterval: 100,
-    cacheTime: 0,
-  });
+  const { data: NFTs, isLoading, isError } = useQuery(["SoldNFTS"], Query, {});
   async function Query() {
     const Query = await subgraphQuery(
       FETCH_RECENT_SOLD(address?.toLowerCase())
@@ -46,13 +39,19 @@ export const SoldNFTs = () => {
       </div>
     );
   }
-
+  if (!isConnected) {
+    return (
+      <div className="flex justify-center items-center text-2xl text-red-500 rounded-lg">
+        Connect wallet First
+      </div>
+    );
+  }
   if (isError) {
     return (
       <div className="justify-center items-center flex flex-col">
         <img src="error.png" alt="Error" />
         <p className="text-3xl font-bold italic text-purple-500">
-          You have't Bought NFTs!
+          You have't Sold NFTs!
         </p>
         <p className="text-3xl font-bold italic text-purple-500">Mint First!</p>
       </div>
@@ -84,7 +83,7 @@ export const SoldNFTs = () => {
           {length === 0 ? (
             <div className="col-span-8 flex items-center justify-center">
               <p className="text-red-500 text-2xl flex justify-center items-center">
-                You Haven't Bought Any NFT
+                You Haven't Sold Any NFT
               </p>
             </div>
           ) : (

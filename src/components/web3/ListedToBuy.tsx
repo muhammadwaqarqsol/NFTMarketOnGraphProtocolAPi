@@ -92,12 +92,16 @@ export const ListedToBuy: React.FC<ListedNftsProps> = ({
                 </div>
               </div>
             </div>
-            <button
-              className="text-xl justify-center items-center bg-purple-300 rounded-3xl p-2"
-              onClick={() => BuyNFT()}
-            >
-              {isSuccess ? "Please Wait" : "Buy"}
-            </button>
+            {address.toLowerCase() !== Address ? (
+              <button
+                className="text-xl justify-center items-center bg-purple-300 rounded-3xl p-2"
+                onClick={() => BuyNFT()}
+              >
+                {isSuccess ? "Please Wait" : "Buy"}
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       }

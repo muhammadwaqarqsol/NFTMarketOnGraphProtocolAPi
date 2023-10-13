@@ -7,14 +7,7 @@ import { ListedToBuy } from "../web3/ListedToBuy";
 export const MarketPlaceBuy = () => {
   const { address, isConnected } = useAccount();
   const [length, setLength] = useState<Number>();
-  const {
-    data: NFTs,
-    isLoading,
-    isError,
-  } = useQuery(["MarketBuy"], Query, {
-    refetchInterval: 100,
-    cacheTime: 0,
-  });
+  const { data: NFTs, isLoading, isError } = useQuery(["MarketBuy"], Query, {});
   async function Query() {
     const Query = await subgraphQuery(
       FETCH_ALL_Listed_NFT(address?.toLowerCase())
@@ -32,7 +25,13 @@ export const MarketPlaceBuy = () => {
       console.log((NFTs as any).tokens);
     }
   }, []);
-
+  if (!isConnected) {
+    return (
+      <div className="flex justify-center items-center text-2xl text-red-500 rounded-lg">
+        Connect wallet First
+      </div>
+    );
+  }
   if (isLoading) {
     return (
       <div className="flex justify-center items-center text-2xl text-red-500 rounded-lg">

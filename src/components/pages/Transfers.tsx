@@ -11,10 +11,7 @@ export const TransferNFTs = () => {
     data: NFTs,
     isLoading,
     isError,
-  } = useQuery(["TransferNFTS"], Query, {
-    refetchInterval: 100,
-    cacheTime: 0,
-  });
+  } = useQuery(["TransferNFTS"], Query, {});
   async function Query() {
     const Query = await subgraphQuery(
       FETCH_transfer_NFT(address?.toLowerCase())
@@ -40,6 +37,13 @@ export const TransferNFTs = () => {
     );
   }
 
+  if (!isConnected) {
+    return (
+      <div className="flex justify-center items-center text-2xl text-red-500 rounded-lg">
+        Connect wallet First
+      </div>
+    );
+  }
   if (isError) {
     return (
       <div className="justify-center items-center flex flex-col">
@@ -51,6 +55,7 @@ export const TransferNFTs = () => {
       </div>
     );
   }
+
   if (!address) {
     return (
       <>
@@ -77,7 +82,7 @@ export const TransferNFTs = () => {
           {length === 0 ? (
             <div className="col-span-8 flex items-center justify-center">
               <p className="text-red-500 text-2xl flex justify-center items-center">
-                You haven't Listed Any NFT
+                You haven't Transferred Any NFT
               </p>
             </div>
           ) : (

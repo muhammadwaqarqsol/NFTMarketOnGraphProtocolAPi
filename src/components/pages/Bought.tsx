@@ -16,10 +16,7 @@ export const BoughtNFTs = () => {
     data: NFTs,
     isLoading,
     isError,
-  } = useQuery(["BoughtNFTS"], Query, {
-    refetchInterval: 100,
-    cacheTime: 0,
-  });
+  } = useQuery(["BoughtNFTS"], Query, {});
   async function Query() {
     const Query = await subgraphQuery(FETCH_RECENT_BUY(address?.toLowerCase()));
     return Query;
@@ -42,7 +39,13 @@ export const BoughtNFTs = () => {
       </div>
     );
   }
-
+  if (!isConnected) {
+    return (
+      <div className="flex justify-center items-center text-2xl text-red-500 rounded-lg">
+        Connect wallet First
+      </div>
+    );
+  }
   if (isError) {
     return (
       <div className="justify-center items-center flex flex-col">
