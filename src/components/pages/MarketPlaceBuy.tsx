@@ -7,7 +7,12 @@ import { ListedToBuy } from "../web3/ListedToBuy";
 export const MarketPlaceBuy = () => {
   const { address, isConnected } = useAccount();
   const [length, setLength] = useState<Number>();
-  const { data: NFTs, isLoading, isError } = useQuery(["MarketBuy"], Query, {});
+  const {
+    data: NFTs,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery(["MarketBuy"], Query, {});
   async function Query() {
     const Query = await subgraphQuery(
       FETCH_ALL_Listed_NFT(address?.toLowerCase())
@@ -90,6 +95,7 @@ export const MarketPlaceBuy = () => {
                 nftTokenId={nft.tokenID}
                 price={nft.price}
                 Address={nft.owner.id}
+                myFunction={refetch}
               />
             ))
           )}

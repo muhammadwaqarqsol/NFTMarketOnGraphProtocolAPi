@@ -17,6 +17,7 @@ interface ListedNftsProps {
   nftTokenId: string;
   price: string;
   Address: String;
+  myFunction: () => void;
 }
 
 export const ListedToBuy: React.FC<ListedNftsProps> = ({
@@ -26,6 +27,7 @@ export const ListedToBuy: React.FC<ListedNftsProps> = ({
   nftTokenId,
   price,
   Address,
+  myFunction,
 }) => {
   const { address } = useAccount();
   // Write contract Function
@@ -57,6 +59,7 @@ export const ListedToBuy: React.FC<ListedNftsProps> = ({
   }
   useEffect(() => {
     if (isSuccess) {
+      myFunction();
       isSuccess = false;
       Debug && console.log(Buy, "Data");
     }
@@ -97,7 +100,7 @@ export const ListedToBuy: React.FC<ListedNftsProps> = ({
                 className="text-xl justify-center items-center bg-purple-300 rounded-3xl p-2"
                 onClick={() => BuyNFT()}
               >
-                {isSuccess ? "Please Wait" : "Buy"}
+                {isSuccess ? "Buy" : "Please Wait"}
               </button>
             ) : (
               <></>

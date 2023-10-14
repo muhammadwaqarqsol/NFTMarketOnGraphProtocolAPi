@@ -7,7 +7,12 @@ import { useAccount, useQuery } from "wagmi";
 export const MyNfts = () => {
   const { isConnected, address } = useAccount();
   const [length, setLength] = useState<Number>();
-  const { data: NFTs, isLoading, isError } = useQuery(["CreatedNFT"], Query,{staleTime:2000});
+  const {
+    data: NFTs,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery(["CreatedNFT"], Query, { staleTime: 2000 });
 
   async function Query() {
     const Query = await subgraphQuery(
@@ -400,6 +405,7 @@ export const MyNfts = () => {
                 name={nft.Name}
                 nftTokenId={nft.tokenID}
                 Listed={nft.Listed}
+                myFunction={refetch}
               />
             ))
           )}

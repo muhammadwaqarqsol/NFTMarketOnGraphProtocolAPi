@@ -10,6 +10,7 @@ export const NftListing = () => {
     data: NFTs,
     isLoading,
     isError,
+    refetch,
   } = useQuery(["ListedNFTs"], Query, {
     refetchInterval: 100,
     cacheTime: 0,
@@ -86,6 +87,7 @@ export const NftListing = () => {
                 name={nft.Name}
                 nftTokenId={nft.tokenID}
                 price={nft.price}
+                myFunction={refetch}
               />
             ))
           )}

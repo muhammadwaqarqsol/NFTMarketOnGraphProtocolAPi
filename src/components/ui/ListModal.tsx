@@ -7,8 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Debug from "../utils/constant";
 interface nftData {
   tokenId: string; // Change the type of projectID to match your data type
+  myFunction: () => void;
 }
-export const ListModal: React.FC<nftData> = ({ tokenId }) => {
+export const ListModal: React.FC<nftData> = ({ tokenId, myFunction }) => {
   const { address } = useAccount();
   const [showModal, setShowModal] = useState(false);
   const [showprice, setPrice] = useState("");
@@ -49,6 +50,7 @@ export const ListModal: React.FC<nftData> = ({ tokenId }) => {
   };
   useEffect(() => {
     if (isSuccess) {
+      myFunction();
       isSuccess = false;
       //   setShowModal(false)
       toast.success("Nft Listed Successfully ", {

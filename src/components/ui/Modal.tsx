@@ -6,9 +6,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Debug from "../utils/constant";
 interface nftData {
-  tokenId: string; // Change the type of projectID to match your data type
+  tokenId: string;
+  myFunction: () => void;
+
+  // Change the type of projectID to match your data type
+  // Change the type of projectID to match your data type
 }
-export const Modal: React.FC<nftData> = ({ tokenId }) => {
+export const Modal: React.FC<nftData> = ({ tokenId, myFunction }) => {
   const { address } = useAccount();
   const [showModal, setShowModal] = useState(false);
   const [showaddress, setAddress] = useState("");
@@ -54,6 +58,7 @@ export const Modal: React.FC<nftData> = ({ tokenId }) => {
   };
   useEffect(() => {
     if (isSuccess) {
+      myFunction();
       isSuccess = false;
       //   setShowModal(false)
       toast.success("Nft transfered Successfully ", {

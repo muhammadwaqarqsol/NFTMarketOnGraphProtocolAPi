@@ -8,6 +8,7 @@ interface ListedNftsProps {
   description: string;
   nftTokenId: string;
   Listed: Boolean;
+  myFunction: () => void;
 }
 
 export const OwnedListedNfts: React.FC<ListedNftsProps> = ({
@@ -16,6 +17,7 @@ export const OwnedListedNfts: React.FC<ListedNftsProps> = ({
   description,
   nftTokenId,
   Listed,
+  myFunction,
 }) => {
   const { address } = useAccount();
 
@@ -48,12 +50,12 @@ export const OwnedListedNfts: React.FC<ListedNftsProps> = ({
                 </div>
               </div>
               <div className="flex items-center justify-between md:items-center lg:justify-between ">
-                <Modal tokenId={nftTokenId} />
+                <Modal tokenId={nftTokenId} myFunction={myFunction} />
                 {Listed ? (
                   <></>
                 ) : (
                   <div className="flex items-center justify-between md:items-center lg:justify-between ">
-                    <ListModal tokenId={nftTokenId} />
+                    <ListModal tokenId={nftTokenId} myFunction={myFunction} />
                   </div>
                 )}
               </div>

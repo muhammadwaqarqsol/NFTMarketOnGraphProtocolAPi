@@ -10,6 +10,7 @@ interface ListedNftsProps {
   description: string;
   nftTokenId: string;
   price: string;
+  myFunction: () => void;
 }
 
 export const ListedNfts: React.FC<ListedNftsProps> = ({
@@ -18,6 +19,7 @@ export const ListedNfts: React.FC<ListedNftsProps> = ({
   description,
   nftTokenId,
   price,
+  myFunction,
 }) => {
   const { address } = useAccount();
 
