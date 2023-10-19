@@ -94,3 +94,14 @@ after getting these keys create .env file and check variable name from .env.exam
 ## MIT License
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 # NFTMarketOnGraphProtocolAPi
+
+
+# NFTMarketOnGraphProtocolAPi
+- For Usage add all variables to env file and use the
+
+```shell
+git clone this repo
+cd [folder]
+npm i --legacy-peer-deps #to avoid any deps error on installation
+npm start 
+```
