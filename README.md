@@ -105,3 +105,8 @@ cd [folder]
 npm i --legacy-peer-deps #to avoid any deps error on installation
 npm start 
 ```
+
+# Explanation And Refrences
+Both Repo NFT MARKET GRAPH API
+AND Its OPen API on Graph
+[![Link](ttps://docs.google.com/document/d/1L5C7Ly7nvcoPwnWULtajUgpR1XLgRdGx4NAq2zKqqjw/edit?usp=sharing)
